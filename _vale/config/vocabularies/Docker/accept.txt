@@ -11,6 +11,7 @@ CentOS
 Ceph
 Chrome
 Chrome DevTools
+Citrix
 CloudFront
 Codefresh
 Codespaces
@@ -20,6 +21,7 @@ Datadog
 Ddosify
 Debootstrap
 Dev
+Dex
 Dev Environments?
 Django
 Docker Build Cloud
