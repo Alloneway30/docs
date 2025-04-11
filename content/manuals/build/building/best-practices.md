@@ -46,9 +46,9 @@ image. When choosing an image, ensure it's built from a trusted source and keep
 it small.
 
 - [Docker Official Images](https://hub.docker.com/search?image_filter=official)
-  are some of the most secure and dependable images on Docker Hub. Typically,
-  Docker Official images have few or no packages containing CVEs, and are
-  thoroughly reviewed by Docker and project maintainers.
+  are a curated collection that have clear documentation, promote best
+  practices, and are regularly updated. They provide a trusted starting point
+  for many applications.
 
 - [Verified Publisher](https://hub.docker.com/search?image_filter=store) images
   are high-quality images published and maintained by the organizations
@@ -256,6 +256,11 @@ automatically build and tag a Docker image and test it.
 
 Follow these recommendations on how to properly use the [Dockerfile instructions](/reference/dockerfile.md)
 to create an efficient and maintainable Dockerfile.
+
+> [!TIP]
+>
+> Want a better editing experience for Dockerfiles in VS Code?
+> Check out the [Docker VS Code Extension (Beta)](https://marketplace.visualstudio.com/items?itemName=docker.docker) for linting, code navigation, and vulnerability scanning.
 
 ### FROM
 
