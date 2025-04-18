@@ -5,10 +5,30 @@ usage: docker buildx history ls
 pname: docker buildx history
 plink: docker_buildx_history.yaml
 options:
+    - option: filter
+      value_type: stringArray
+      default_value: '[]'
+      description: Provide filter values (e.g., `status=error`)
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
     - option: format
       value_type: string
       default_value: table
       description: Format the output
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: local
+      value_type: bool
+      default_value: "false"
+      description: List records for current repository only
       deprecated: false
       hidden: false
       experimental: false

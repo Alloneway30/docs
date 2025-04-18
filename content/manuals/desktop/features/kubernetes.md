@@ -20,7 +20,7 @@ Kubernetes on Docker Desktop runs alongside other workloads, including Swarm ser
 
 ## What happens when I enable Kubernetes in Docker Desktop?
 
-When you enable Kubernetes in Docker Desktop, the following actions are triggered in the Docker Desktop backend and VM:
+The following actions are triggered in the Docker Desktop backend and VM:
 
 - Generation of certificates and cluster configuration
 - Download and installation of Kubernetes internal components
@@ -37,7 +37,7 @@ Turning the Kubernetes server on or off in Docker Desktop does not affect your o
 4. Choose your [cluster provisioning method](#cluster-provisioning-method).
 5. Select **Apply & Restart** to save the settings.
 
-This sets up the images required to run the Kubernetes server as containers, and installs the `kubectl` command-line tool on your system at `/usr/local/bin/kubectl` (Mac) or `C:\Program Files\Docker\Docker\Resources\bin\kubectl.exe` (Windows).
+This sets up the images required to run the Kubernetes server as containers, and installs the `kubectl` command-line tool on your system at `/usr/local/bin/kubectl` (Mac) or `C:\Program Files\Docker\Docker\resources\bin\kubectl.exe` (Windows).
 
    > [!NOTE]
    >
@@ -82,10 +82,6 @@ The following table summarizes this comparison.
 | Works with Docker image store | Yes | No |
 
 ### Additional settings
-
-#### Kubernetes dashboard
-
-Once Kubernetes is installed and set up, you can select the **Deploy the Kubernetes Dashboard into cluster** setting so you can manage and monitor your Kubernetes clusters and applications more easily.
 
 #### Viewing system containers
 
