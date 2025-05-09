@@ -33,6 +33,16 @@ options:
       experimentalcli: false
       kubernetes: false
       swarm: false
+    - option: check
+      value_type: bool
+      default_value: "false"
+      description: Check build configuration
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
     - option: compress
       value_type: bool
       default_value: "true"
@@ -92,6 +102,16 @@ options:
       description: Build images in parallel. DEPRECATED
       deprecated: false
       hidden: true
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: print
+      value_type: bool
+      default_value: "false"
+      description: Print equivalent bake file
+      deprecated: false
+      hidden: false
       experimental: false
       experimentalcli: false
       kubernetes: false

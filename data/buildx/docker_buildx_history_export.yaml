@@ -1,0 +1,55 @@
+command: docker buildx history export
+short: Export a build into Docker Desktop bundle
+long: Export a build into Docker Desktop bundle
+usage: docker buildx history export [OPTIONS] [REF]
+pname: docker buildx history
+plink: docker_buildx_history.yaml
+options:
+    - option: all
+      value_type: bool
+      default_value: "false"
+      description: Export all records for the builder
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: output
+      shorthand: o
+      value_type: string
+      description: Output file path
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+inherited_options:
+    - option: builder
+      value_type: string
+      description: Override the configured builder instance
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+    - option: debug
+      shorthand: D
+      value_type: bool
+      default_value: "false"
+      description: Enable debug logging
+      deprecated: false
+      hidden: false
+      experimental: false
+      experimentalcli: false
+      kubernetes: false
+      swarm: false
+deprecated: false
+hidden: false
+experimental: false
+experimentalcli: false
+kubernetes: false
+swarm: false
+

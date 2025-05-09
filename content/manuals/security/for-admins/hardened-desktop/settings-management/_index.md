@@ -25,10 +25,11 @@ For an extra layer of security, you can also use Settings Management to enable a
 ## How does it work?
 
 You can configure several Docker Desktop settings using either:
- - An `admin-settings.json` file. This file is located on the Docker Desktop host and can only be accessed by developers with root or administrator privileges.
- - Creating a settings policy in the Docker Admin Console 
 
-Settings that are defined by an administrator override any previous values set by developers and ensure that these cannot be modified. 
+ - An `admin-settings.json` file. This file is located on the Docker Desktop host and can only be accessed by developers with root or administrator privileges.
+ - Creating a settings policy in the Docker Admin Console.
+
+Settings that are defined by an administrator override any previous values set by developers and ensure that these cannot be modified.
 
 ## What features can I configure with Settings Management?
 
@@ -45,7 +46,7 @@ Using the `admin-settings.json` file, you can:
 - Turn off Docker Extensions
 - Turn off Docker Scout SBOM indexing
 - Turn off beta and experimental features
-- Turn off Docker AI ([Ask Gordon](../../../../desktop/features/gordon/_index.md))
+- Turn off Docker AI ([Ask Gordon](/manuals/ai/gordon/_index.md))
 - Turn off Docker Desktop's onboarding survey
 - Control whether developers can use the Docker terminal
 - Control the file sharing implementation for your developers on macOS
@@ -73,8 +74,6 @@ To avoid disrupting your developers' workflows, Docker doesn't automatically req
 Enforced settings appear grayed out in Docker Desktop. They can't be edited via the Docker Desktop Dashboard, CLI, or `settings-store.json` (or `settings.json` for Docker Desktop 4.34 and earlier).
 
 In addition, if Enhanced Container Isolation is enforced, developers can't use privileged containers or similar techniques to modify enforced settings within the Docker Desktop Linux VM. For example, they can't reconfigure proxy and networking, or Docker Engine.
-
-![Proxy settings grayed out](/assets/images/grayed-setting.png)
 
 ## What's next?
 

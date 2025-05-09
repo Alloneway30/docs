@@ -4,7 +4,7 @@ keywords: admin, controls, rootless, enhanced container isolation
 title: Configure Settings Management with a JSON file
 linkTitle: Use a JSON file
 weight: 10
-aliases: 
+aliases:
  - /desktop/hardened-desktop/settings-management/configure/
  - /security/for-admins/hardened-desktop/settings-management/configure/
 ---
@@ -17,7 +17,23 @@ Settings Management is designed specifically for organizations who don’t give 
 
 ## Prerequisites
 
-You first need to [enforce sign-in](/manuals/security/for-admins/enforce-sign-in/_index.md) to ensure that all Docker Desktop developers authenticate with your organization. Since Settings Management requires a Docker Business subscription, enforced sign-in guarantees that only authenticated users have access and that the feature consistently takes effect across all users, even though it may still work without enforced sign-in.
+You must [enforce sign-in](/manuals/security/for-admins/enforce-sign-in/_index.md) to ensure that all Docker Desktop users authenticate with your organization.
+
+Settings management requires a Docker Business subscription. Docker Desktop verifies the user's authentication and licensing before applying any settings from the `admin-settings.json` file. The settings file will not take effect unless both authentication and license checks pass. These checks ensure that only licensed users receive managed settings.
+
+> [!IMPORTANT]
+>
+> If a user is not signed in, or their Docker ID does not belong to an organization with a Docker Business subscription, Docker Desktop ignores the `admin-settings.json` file.
+
+
+## Known limitations
+
+The `admin-settings.json` file requires users to authenticate with Docker Hub and be a member
+of an organization with a Docker Business subscription. This means the file does not work in:
+
+- Air-grapped or offline environments where Docker Desktop can't authenticate with Docker Hub.
+- Restricted environments where SSO and cloud-based authentication are not permitted.
+
 
 ## Step one: Create the `admin-settings.json` file and save it in the correct location
 
@@ -182,7 +198,7 @@ The following `admin-settings.json` code and table provides an example of the re
 }
 ```
 
-### General 
+### General
 
 |Parameter|OS|Description|Version|
 |:-------------------------------|---|:-------------------------------|---|
@@ -195,7 +211,7 @@ The following `admin-settings.json` code and table provides an example of the re
 | `desktopTerminalEnabled` |  | If `value` is set to `false`, developers cannot use the Docker terminal to interact with the host machine and execute commands directly from Docker Desktop. |  |
 |`exposeDockerAPIOnTCP2375`| Windows only| Exposes the Docker API on a specified port. If `value` is set to true, the Docker API is exposed on port 2375. Note: This is unauthenticated and should only be enabled if protected by suitable firewall rules.|  |
 
-### File sharing and emulation 
+### File sharing and emulation
 
 |Parameter|OS|Description|Version|
 |:-------------------------------|---|:-------------------------------|---|
@@ -241,16 +257,25 @@ The following `admin-settings.json` code and table provides an example of the re
 | &nbsp; &nbsp; &nbsp; &nbsp;`dockerDaemonOptions` |  | Overrides the options in the Linux daemon config file. See the [Docker Engine reference](/reference/cli/dockerd/#daemon-configuration-file).|  |
 
 > [!NOTE]
-> 
+>
 > This setting is not available to configure via the Docker Admin Console.
 
 ### Kubernetes
 
 |Parameter|OS|Description|Version|
 |:-------------------------------|---|:-------------------------------|---|
-|`kubernetes`|  | If `enabled` is set to true, a Kubernetes single-node cluster is started when Docker Desktop starts. If `showSystemContainers` is set to true, Kubernetes containers are displayed in the Docker Desktop Dashboard and when you run `docker ps`.  `imagesRepository` lets you specify which repository Docker Desktop pulls the Kubernetes images from. For example, `"imagesRepository": "registry-1.docker.io/docker"`.  |  |
+|`kubernetes`|  | If `enabled` is set to true, a Kubernetes single-node cluster is started when Docker Desktop starts. If `showSystemContainers` is set to true, Kubernetes containers are displayed in the Docker Desktop Dashboard and when you run `docker ps`. The [imagesRepository](../../../../desktop/features/kubernetes.md#configuring-a-custom-image-registry-for-kubernetes-control-plane-images) setting lets you specify which repository Docker Desktop pulls control-plane Kubernetes images from. |  |
 
-### Features in development 
+> [!NOTE]
+>
+> When using the `imagesRepository` setting and Enhanced Container Isolation (ECI), add the following images to the [ECI Docker socket mount image list](#enhanced-container-isolation):
+>
+> * [imagesRepository]/desktop-cloud-provider-kind:*
+> * [imagesRepository]/desktop-containerd-registry-mirror:*
+>
+> These containers mount the Docker socket, so you must add the images to the ECI images list. If not, ECI will block the mount and Kubernetes won't start.
+
+### Features in development
 
 |Parameter|OS|Description|Version|
 |:-------------------------------|---|:-------------------------------|---|
@@ -258,7 +283,7 @@ The following `admin-settings.json` code and table provides an example of the re
 | `allowBetaFeatures`| | If `value` is set to `false`, beta features are disabled.|  |
 | `enableDockerAI` | | If `value` is set to `false`, Docker AI (Ask Gordon) features are disabled. |  |
 
-### Enhanced Container Isolation 
+### Enhanced Container Isolation
 
 |Parameter|OS|Description|Version|
 |:-------------------------------|---|:-------------------------------|---|
@@ -282,6 +307,4 @@ For settings to take effect:
 
 So as not to disrupt your developers' workflow, Docker doesn't automatically mandate that developers re-launch and re-authenticate once a change has been made.
 
-In Docker Desktop, developers see the relevant settings grayed out and the message **Locked by your administrator**.
-
-![Proxy settings grayed out with Settings Management](/assets/images/grayed-setting.png)
+In Docker Desktop, developers see the relevant settings grayed out.
