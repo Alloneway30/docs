@@ -12,6 +12,7 @@ aliases:
 - /docker-hub/cancel-downgrade/
 - /docker-hub/billing/downgrade/
 - /billing/scout-billing/
+- /billing/subscription-management/
 weight: 30
 ---
 
@@ -45,6 +46,11 @@ To upgrade your Docker subscription:
 4. Select the account you want to upgrade in the drop-down at the top-left of the page.
 5. Select **Upgrade**.
 6. Follow the on-screen instructions to complete your upgrade.
+
+> [!NOTE]
+>
+> If you choose to pay using a US bank account, you must verify the account. For
+> more information, see [Verify a bank account](manuals/billing/payment-method.md#verify-a-bank-account).
 
 {{< /tab >}}
 {{< tab name="Legacy Docker plan" >}}
@@ -80,8 +86,7 @@ To downgrade your Docker subscription:
 2. Under Settings and administration, select **Billing**.
 3. Select the account you want to downgrade in the drop-down at the top-left of the page.
 4. Select the action icon and then **Cancel subscription**.
-5. Review the cancellation warnings, then select **Confirm cancellation**.
-6. Optional. Fill out the feedback survey, or select **Skip**.
+5. Fill out the feedback survey to continue with cancellation.
 
 {{< /tab >}}
 {{< tab name="Legacy Docker plan" >}}

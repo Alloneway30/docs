@@ -11,6 +11,7 @@ CentOS
 Ceph
 Chrome
 Chrome DevTools
+Citrix
 CloudFront
 Codefresh
 Codespaces
@@ -20,6 +21,7 @@ Datadog
 Ddosify
 Debootstrap
 Dev
+Dex
 Dev Environments?
 Django
 Docker Build Cloud
@@ -75,6 +77,7 @@ Nginx
 Nutanix
 Nuxeo
 OAuth
+Ollama
 OTel
 Okta
 PKG
@@ -94,6 +97,7 @@ Sysbox
 Sysdig
 Testcontainers
 Traefik
+Trixie
 Ubuntu
 Unix
 VMware
@@ -149,6 +153,7 @@ Zsh
 [Ss]warm
 [Ss]yscalls?
 [Ss]ysfs
+[Tt]eardown
 [Tt]oolchains?
 [Uu]narchived?
 [Uu]ngated

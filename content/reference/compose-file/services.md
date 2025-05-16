@@ -400,7 +400,7 @@ services:
 
 configs:
   my_credentials_spec:
-    file: ./my-credential-spec.json|
+    file: ./my-credential-spec.json
 ```
 
 ### `depends_on`
@@ -1395,9 +1395,31 @@ services:
           - mysql
 
 networks:
-  front-tier:
-  back-tier:
-  admin:
+  front-tier: {}
+  back-tier: {}
+  admin: {}
+```
+
+### `interface_name`
+
+{{< summary-bar feature_name="Compose interface-name" >}}
+
+`interface_name` lets you specify the name of the network interface used to connect a service to a given network. This ensures consistent and predictable interface naming across services and networks.
+
+```yaml
+services:
+  backend:
+    image: alpine
+    command: ip link show
+    networks:
+      back-tier:
+        interface_name: eth0
+```
+
+Running the example Compose application shows:
+
+```console
+backend-1  | 11: eth0@if64: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue state UP 
 ```
 
 #### `ipv4_address`, `ipv6_address`
@@ -1570,7 +1592,7 @@ in the form:
 
 - `HOST` is `[IP:](port | range)` (optional). If it is not set, it binds to all network interfaces (`0.0.0.0`). 
 - `CONTAINER` is `port | range`.
-- `PROTOCOL` restricts ports to a specified protocol either `tcp` or `upd`(optional). Default is `tcp`.
+- `PROTOCOL` restricts ports to a specified protocol either `tcp` or `udp`(optional). Default is `tcp`.
 
 Ports can be either a single value or a range. `HOST` and `CONTAINER` must use equivalent ranges. 
 
@@ -1692,6 +1714,46 @@ services:
     profiles:
       - debug
 ```
+
+### `provider`
+
+{{< summary-bar feature_name="Compose provider services" >}}
+
+`provider` can be used to define a service that Compose won't manage directly. Compose delegated the service lifecycle to a dedicated or third-party component.
+
+```yaml
+  database:
+    provider:
+      type: awesomecloud
+      options:
+        type: mysql
+        foo: bar  
+  app:
+    image: myapp 
+    depends_on:
+       - database
+```
+
+As Compose runs the application, the `awesomecloud` binary is used to manage the `database` service setup. 
+Dependent service `app` receives additional environment variables prefixed by the service name so it can access the resource. 
+
+For illustration, assuming `awesomecloud` execution produced variables `URL` and `API_KEY`, the `app` service
+runs with environment variables `DATABASE_URL` and `DATABASE_API_KEY`.
+
+As Compose stops the application, the `awesomecloud` binary is used to manage the `database` service tear down.
+
+The mechanism used by Compose to delegate the service lifecycle to an external binary is described [here](https://github.com/docker/compose/tree/main/docs/extension.md).
+
+For more information on using the `provider` attribute, see [Use provider services](/manuals/compose/how-tos/provider-services.md).
+
+### `type`
+
+`type` attribute is required. It defines the external component used by Compose to manage setup and tear down lifecycle
+events.
+
+### `options`
+
+`options` are specific to the selected provider and not validated by the compose specification
 
 ### `pull_policy`
 
@@ -2035,22 +2097,25 @@ The short syntax uses a single string with colon-separated values to specify a v
 > platform it rejects Compose files which use relative host paths with an error. To avoid ambiguities
 > with named volumes, relative paths should always begin with `.` or `..`.
 
+> [!NOTE]
+>
+> For bind mounts, the short syntax creates a directory at the source path on the host if it doesn't exist. This is for backward compatibility with `docker-compose` legacy. 
+> It can be prevented by using long syntax and setting `create_host_path` to `false`.
+
 #### Long syntax
 
 The long form syntax lets you configure additional fields that can't be
 expressed in the short form.
 
-- `type`: The mount type. Either `volume`, `bind`, `tmpfs`, `npipe`, or `cluster`
-- `source`: The source of the mount, a path on the host for a bind mount, or the
+- `type`: The mount type. Either `volume`, `bind`, `tmpfs`, `image`, `npipe`, or `cluster`
+- `source`: The source of the mount, a path on the host for a bind mount, a Docker image reference for an image mount, or the
   name of a volume defined in the
   [top-level `volumes` key](volumes.md). Not applicable for a tmpfs mount.
 - `target`: The path in the container where the volume is mounted.
 - `read_only`: Flag to set the volume as read-only.
 - `bind`: Used to configure additional bind options:
   - `propagation`: The propagation mode used for the bind.
-  - `create_host_path`: Creates a directory at the source path on host if there is nothing present.
-    Compose does nothing if there is something present at the path. This is automatically implied by short syntax
-    for backward compatibility with `docker-compose` legacy.
+  - `create_host_path`: Creates a directory at the source path on host if there is nothing present. Defaults to `true`.
   - `selinux`: The SELinux re-labeling option `z` (shared) or `Z` (private)
 - `volume`: Configures additional volume options:
   - `nocopy`: Flag to disable copying of data from a container when a volume is created.
@@ -2058,6 +2123,8 @@ expressed in the short form.
 - `tmpfs`: Configures additional tmpfs options:
   - `size`: The size for the tmpfs mount in bytes (either numeric or as bytes unit).
   - `mode`: The file mode for the tmpfs mount as Unix permission bits as an octal number. Introduced in Docker Compose version [2.14.0](/manuals/compose/releases/release-notes.md#2260).
+- `image`: Configures additional image options:
+  - `subpath`: Path inside the source image to mount instead of the image root. Available in [Docker Compose version 2.35.0](/manuals/compose/releases/release-notes.md#2350)
 - `consistency`: The consistency requirements of the mount. Available values are platform specific.
 
 > [!TIP]

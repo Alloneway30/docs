@@ -16,6 +16,8 @@ weight: 60
 - JCB
 - Diners
 - UnionPay
+- Link
+- ACH transfer with a [verified](manuals/billing/payment-method.md#verify-a-bank-account) US bank account
 
 ### What currency is supported?
 
