@@ -43,6 +43,8 @@ Make sure you have completed the following before you begin:
 {{< /tab >}}
 {{< tab name="Docker Hub" >}}
 
+{{% include "hub-org-management.md" %}}
+
 1. Sign in to Docker Hub.
 2. Select **My Hub** and then your organization from the list.
 3. On your organization page, select **Settings** and then **Security**.
@@ -78,9 +80,10 @@ The user interface for your IdP may differ slightly from the following steps. Re
     - Name ID format: `EmailAddress`
     - Application username: `Email`
     - Update application on: `Create and update`
-11. Select **Next**.
-12. Select the **This is an internal app that we have created** checkbox.
-13. Select **Finish**.
+11. Optional. Add SAML attributes. See [SSO attributes](/manuals/security/for-admins/provisioning/_index.md#sso-attributes) for a table of SSO attributes.
+12. Select **Next**.
+13. Select the **This is an internal app that we have created** checkbox.
+14. Select **Finish**.
 
 {{< /tab >}}
 {{< tab name="Entra ID SAML 2.0" >}}
@@ -94,8 +97,9 @@ The user interface for your IdP may differ slightly from the following steps. Re
 7. Enter the following values from Docker into their corresponding Azure fields:
     - Docker Entity ID: **Identifier**
     - Docker ACS URL: **Reply URL**
-8. Save configuration.
-9. From the **SAML Signing Certificate** section, download your **Certificate (Base64)**.
+8. Optional. Add SAML attributes. See [SSO attributes](/manuals/security/for-admins/provisioning/_index.md#sso-attributes) for a table of SSO attributes.
+9. Save configuration.
+10. From the **SAML Signing Certificate** section, download your **Certificate (Base64)**.
 
 {{< /tab >}}
 {{< tab name="Azure Connect (OIDC)" >}}
@@ -198,15 +202,20 @@ After you've completed the SSO connection process in Docker, we recommend testin
 
 1. Open an incognito browser.
 2. Sign in to the Admin Console using your **domain email address**.
-3. The browser will redirect to your IdP's login page to authenticate.
+3. The browser will redirect to your identity provider's sign in page to authenticate. If you have [multiple IdPs](#optional-configure-multiple-idps), choose the sign sign-in option **Continue with SSO**.
 4. Authenticate through your domain email instead of using your Docker ID.
 
 You can also test your SSO connection through the command-line interface (CLI). If you want to test through the CLI, your users must have a personal access token (PAT).
 
+## Optional: Configure multiple IdPs
+
+Docker supports multiple IdP configurations. With multiple IdPs configured, one domain can be associated with multiple SSO identity providers. To configure multiple IdPs, repeat steps 1-4 in this guide for each IdP. Ensure each IdP configuration uses the same domain.
+
+When a user signs in to a Docker organization that has multiple IdPs, on the sign-in page, they must choose the option **Continue with SSO**. This prompts them to choose their identity provider and authenticate through their domain email.
 
 ## Optional: Enforce SSO
 
->[!IMPORTANT]
+> [!IMPORTANT]
 >
 > If SSO isn't enforced, users can choose to sign in with either their Docker username and password or SSO.
 

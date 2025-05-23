@@ -236,9 +236,11 @@
 "https://www.docker.com/products/build-cloud/?utm_campaign=2024-02-02-dbc_cli&utm_medium=in-product-ad&utm_source=desktop_v4":
   - /go/docker-build-cloud/
 
-# Run Cloud links
+# Run Cloud links & Docker Cloud
 "/":
   - /go/run-cloud-eap/
+"/desktop/setup/vm-vdi/":
+  - /go/docker-cloud/
 
 # CLI backlinks
 "/engine/cli/filter/":
@@ -263,7 +265,7 @@
 # Docker Debug
 "/reference/cli/docker/debug/":
   - /go/debug-cli/
-"/desktop/use-desktop/container/#integrated-terminal":
+"/desktop/use-desktop/container/#debug":
   - /go/debug-gui/
 
 # Docker Desktop - volumes cloud backup
@@ -288,3 +290,17 @@
   - /go/insights-images/
 "/admin/organization/insights/#extensions":
   - /go/insights-extensions/
+
+# Billing - cancellation
+"/subscription/desktop-license/":
+  - /go/desktop-license/
+"/docker-hub/usage/pulls/":
+  - /go/hub-pull-limits/
+
+# Desktop DMR
+"/model-runner/":
+  - /go/model-runner/
+  
+# Desktop MCP Toolkit
+"/ai/mcp-toolkit/":
+  - /go/mcp-toolkit/

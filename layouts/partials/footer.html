@@ -1,4 +1,4 @@
-<div class="flex justify-center py-8 px-4 bg-gray-light-100 dark:bg-gray-dark-200">
+<div class="flex justify-center py-8 px-4 bg-gray-light-100 dark:bg-gray-dark-200 relative z-10">
   {{ partialCached "components/support-button.html" . }}
 </div>
 <div class="flex justify-center pt-10 pb-20 px-4 bg-gray-light-100 dark:bg-gray-dark-200">
@@ -10,6 +10,7 @@
       {{- with .GetPage "/contribute" }}
         <a class="underline-offset-2 hover:underline" href="{{ .Permalink }}">{{ .LinkTitle }}</a>
       {{- end }}
+      <a href="{{ "llms.txt" | relURL }}">Read llms.txt</a>
     </div>
     <hr class="text-divider-light dark:text-divider-dark" />
     <div class="grid lg:grid-cols-3 place-items-center gap-8 grid-cols-1">

@@ -11,17 +11,20 @@ CentOS
 Ceph
 Chrome
 Chrome DevTools
+Citrix
 CloudFront
 Codefresh
 Codespaces
-CouchDB
 Couchbase
+CouchDB
 Datadog
 Ddosify
 Debootstrap
 Dev
 Dev Environments?
+Dex
 Django
+DMR
 Docker Build Cloud
 Docker Business
 Docker Dasboard
@@ -31,8 +34,8 @@ Docker Extension
 Docker Hub
 Docker Scout
 Docker Team
-Docker's
 Docker-Sponsored Open Source
+Docker's
 Dockerfile
 Dockerize
 Dockerizing
@@ -42,26 +45,27 @@ Fargate
 Fedora
 Flink
 GeoNetwork
+GGUF
 Git
 GitHub( Actions)?
 Google
 Grafana
 Gravatar
 HyperKit
-IPv[46]
-IPvlan
 Intel
 Intune
-JFrog
+IPv[46]
+IPvlan
 Jamf
 JetBrains
+JFrog
 JUnit
 Kerberos
 Kitematic
 Kubeadm
 Kubernetes
-Laravel
 Laradock
+Laravel
 Linux
 LinuxKit
 Logstash
@@ -69,31 +73,33 @@ Mac
 Mail(chimp|gun)
 Microsoft
 MySQL
-NFSv\d
 Netplan
+NFSv\d
 Nginx
 Nutanix
 Nuxeo
 OAuth
-OTel
 Okta
-PKG
+Ollama
+OTel
 Paketo
+PKG
 Postgres
 PowerShell
 Python
 Ryuk
 S3
-SQLite
 Slack
 Snyk
 Solr
 SonarQube
+SQLite
 Syft
 Sysbox
 Sysdig
 Testcontainers
 Traefik
+Trixie
 Ubuntu
 Unix
 VMware
@@ -149,6 +155,7 @@ Zsh
 [Ss]warm
 [Ss]yscalls?
 [Ss]ysfs
+[Tt]eardown
 [Tt]oolchains?
 [Uu]narchived?
 [Uu]ngated
